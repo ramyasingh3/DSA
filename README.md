@@ -62,5 +62,19 @@ python remove_nth_from_end.py
 
 Each solution includes helper functions to create and print linked lists for testing purposes.
 
+## Progress Tracker
+
+### Completed Problems
+- [x] Reverse Linked List (LeetCode #206)
+- [x] Remove Nth Node From End of List (LeetCode #19)
+
+### In Progress
+- [ ] Merge Two Sorted Lists (LeetCode #21)
+- [ ] Linked List Cycle (LeetCode #141)
+
+### Next Up
+- [ ] Add Two Numbers (LeetCode #2)
+- [ ] Remove Duplicates from Sorted List (LeetCode #83)
+
 ---
-*Note: This repository is part of my daily coding practice and DSA learning journey.* 
+*Note: This repository is part of my daily coding practice and DSA learning journey. Last updated: 2024-03-19* 
