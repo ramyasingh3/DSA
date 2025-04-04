@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Data Structures and Algorithms Solutions
 
 This repository contains solutions for various Data Structures and Algorithms problems from LeetCode.
@@ -78,3 +79,55 @@ Each solution includes helper functions to create and print linked lists for tes
 
 ---
 *Note: This repository is part of my daily coding practice and DSA learning journey. Last updated: 2024-03-19* 
+=======
+# Binary Search Tree Implementation and Common Problems
+
+This repository contains a Python implementation of a Binary Search Tree (BST) along with solutions to common BST-related interview questions.
+
+## Problems Implemented
+
+1. **Basic BST Operations**
+   - Insertion of nodes
+   - Searching for a value
+   - Inorder traversal
+
+2. **Common Interview Questions**
+   - Finding minimum value in BST
+   - Finding maximum value in BST
+   - Validating if a tree is a valid BST
+
+## Time Complexities
+
+- **Insertion**: O(h) where h is the height of the tree
+- **Search**: O(h)
+- **Traversal**: O(n) where n is the number of nodes
+- **Find Min/Max**: O(h)
+- **Validate BST**: O(n)
+
+In a balanced BST, h = log(n), making operations efficient. However, in worst case (skewed tree), h = n.
+
+## Usage
+
+```python
+# Create a BST
+bst = BinarySearchTree()
+
+# Insert values
+bst.insert(50)
+bst.insert(30)
+bst.insert(70)
+
+# Search for a value
+result = bst.search(30)  # Returns True
+
+# Get inorder traversal
+traversal = bst.inorder_traversal(bst.root)  # Returns [20, 30, 40, 50, 60, 70, 80]
+
+# Find min and max
+min_val = bst.find_min()  # Returns minimum value
+max_val = bst.find_max()  # Returns maximum value
+
+# Check if tree is valid BST
+is_valid = bst.is_valid_bst()  # Returns True/False
+``` 
+>>>>>>> 51d1012 (Added BST implementation with common interview problems)
