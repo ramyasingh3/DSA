@@ -1,6 +1,86 @@
-# Data Structures and Algorithms Solutions
+# Data Structures and Algorithms
 
-This repository contains solutions for various Data Structures and Algorithms problems from LeetCode.
+This repository contains implementations of various data structures and algorithms problems.
+
+## Problems Implemented
+
+1. **Binary Search Tree (BST)**
+   - Basic BST operations
+   - Search, Insert, Delete
+   - Tree traversals
+
+2. **AVL Tree**
+   - Self-balancing BST implementation
+   - Automatic balancing after insertions
+   - Supports all BST operations in O(log n) time
+   - Includes visualization tools
+
+## AVL Tree Implementation
+
+### Features
+1. Self-balancing binary search tree
+2. Maintains O(log n) height
+3. Supports efficient insertions with automatic rebalancing
+4. Includes visualization tools for tree structure
+
+### Operations
+- Insert a value
+- Inorder traversal
+- Print tree structure with heights
+- Automatic balancing (Left/Right rotations)
+
+### Example Usage
+```python
+# Create an AVL tree
+avl_tree = AVLTree()
+
+# Insert values
+avl_tree.insert_value(10)
+avl_tree.insert_value(20)
+avl_tree.insert_value(30)
+
+# Print tree structure
+avl_tree.print_tree(avl_tree.root)
+
+# Get inorder traversal
+result = avl_tree.inorder_traversal(avl_tree.root)
+```
+
+### Time Complexity
+- All operations: O(log n)
+- Tree remains balanced after each operation
+
+## Running the Code
+
+### Prerequisites
+- Python 3.x
+
+### Running Tests
+```bash
+# Run AVL Tree tests
+python avl_tree.py
+
+# Run other implementations
+python [filename].py
+```
+
+## Directory Structure
+```
+.
+├── README.md
+├── avl_tree.py         # AVL Tree implementation
+└── [other files]       # Other implementations
+```
+
+## Contributing
+Feel free to contribute by:
+1. Forking the repository
+2. Creating a new branch
+3. Making your changes
+4. Submitting a pull request
+
+## License
+This project is open source and available under the MIT License.
 
 ## Problems Solved
 
@@ -47,20 +127,6 @@ The solution uses the two-pointer technique:
 #### Example
 Input: head = [1,2,3,4,5], n = 2
 Output: [1,2,3,5]
-
-## Running the Code
-To run any solution:
-```bash
-python <filename>.py
-```
-
-For example:
-```bash
-python reverse_linked_list.py
-python remove_nth_from_end.py
-```
-
-Each solution includes helper functions to create and print linked lists for testing purposes.
 
 ## Progress Tracker
 
