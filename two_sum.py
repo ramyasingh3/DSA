@@ -1,102 +1,106 @@
-from typing import List, Dict
+"""
+Two Sum Problem Implementation
 
-class Solution:
-    def two_sum_brute_force(self, nums: List[int], target: int) -> List[int]:
-        """
-        Brute force solution with O(n^2) time complexity.
-        Checks every possible pair of numbers.
-        """
-        n = len(nums)
-        for i in range(n):
-            for j in range(i + 1, n):
-                if nums[i] + nums[j] == target:
-                    return [i, j]
-        return []
+This file contains multiple implementations of the Two Sum problem:
+1. Brute Force Approach (O(n²))
+2. Hash Map Approach (O(n))
 
-    def two_sum_hash_map(self, nums: List[int], target: int) -> List[int]:
-        """
-        Hash map solution with O(n) time complexity.
-        Uses a dictionary to store complements.
-        """
-        seen: Dict[int, int] = {}  # value -> index
-        for i, num in enumerate(nums):
-            complement = target - num
-            if complement in seen:
-                return [seen[complement], i]
-            seen[num] = i
-        return []
+Problem Statement:
+Given an array of integers nums and an integer target, return indices of the two numbers
+such that they add up to target. You may assume that each input would have exactly one solution,
+and you may not use the same element twice.
 
-    def two_sum_sorted(self, nums: List[int], target: int) -> List[int]:
-        """
-        Two-pointer solution with O(n log n) time complexity.
-        Only returns the indices if the input array is already sorted.
-        """
-        # Create array of (value, index) pairs to preserve original indices
-        pairs = [(num, i) for i, num in enumerate(nums)]
-        pairs.sort()  # Sort by value
-        
-        left, right = 0, len(nums) - 1
-        while left < right:
-            current_sum = pairs[left][0] + pairs[right][0]
-            if current_sum == target:
-                return [pairs[left][1], pairs[right][1]]
-            elif current_sum < target:
-                left += 1
-            else:
-                right -= 1
-        return []
+Time Complexity:
+- Brute Force: O(n²)
+- Hash Map: O(n)
 
-def test_solution():
-    solution = Solution()
+Space Complexity:
+- Brute Force: O(1)
+- Hash Map: O(n)
+"""
+
+def two_sum_brute_force(nums, target):
+    """
+    Brute force approach to find two numbers that sum up to target.
     
-    # Test Case 1: Basic case
+    Args:
+        nums (list): List of integers
+        target (int): Target sum
+        
+    Returns:
+        tuple: Indices of the two numbers that sum up to target
+    """
+    n = len(nums)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if nums[i] + nums[j] == target:
+                return (i, j)
+    return None
+
+def two_sum_hash_map(nums, target):
+    """
+    Hash map approach to find two numbers that sum up to target.
+    
+    Args:
+        nums (list): List of integers
+        target (int): Target sum
+        
+    Returns:
+        tuple: Indices of the two numbers that sum up to target
+    """
+    num_map = {}  # val -> index
+    
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in num_map:
+            return (num_map[complement], i)
+        num_map[num] = i
+    return None
+
+def test_two_sum():
+    """Test cases for both two sum implementations"""
+    # Test case 1: Basic case
     nums1 = [2, 7, 11, 15]
     target1 = 9
-    print("Test Case 1:")
-    print(f"Input: nums = {nums1}, target = {target1}")
-    print(f"Brute Force: {solution.two_sum_brute_force(nums1, target1)}")
-    print(f"Hash Map: {solution.two_sum_hash_map(nums1, target1)}")
-    print(f"Sorted: {solution.two_sum_sorted(nums1, target1)}")
-    print()
+    assert two_sum_brute_force(nums1, target1) == (0, 1), "Brute force test case 1 failed"
+    assert two_sum_hash_map(nums1, target1) == (0, 1), "Hash map test case 1 failed"
     
-    # Test Case 2: Multiple valid pairs
+    # Test case 2: Numbers at the end
     nums2 = [3, 2, 4]
     target2 = 6
-    print("Test Case 2:")
-    print(f"Input: nums = {nums2}, target = {target2}")
-    print(f"Brute Force: {solution.two_sum_brute_force(nums2, target2)}")
-    print(f"Hash Map: {solution.two_sum_hash_map(nums2, target2)}")
-    print(f"Sorted: {solution.two_sum_sorted(nums2, target2)}")
-    print()
+    assert two_sum_brute_force(nums2, target2) == (1, 2), "Brute force test case 2 failed"
+    assert two_sum_hash_map(nums2, target2) == (1, 2), "Hash map test case 2 failed"
     
-    # Test Case 3: Same number used twice
+    # Test case 3: Same number twice
     nums3 = [3, 3]
     target3 = 6
-    print("Test Case 3:")
-    print(f"Input: nums = {nums3}, target = {target3}")
-    print(f"Brute Force: {solution.two_sum_brute_force(nums3, target3)}")
-    print(f"Hash Map: {solution.two_sum_hash_map(nums3, target3)}")
-    print(f"Sorted: {solution.two_sum_sorted(nums3, target3)}")
-    print()
+    assert two_sum_brute_force(nums3, target3) == (0, 1), "Brute force test case 3 failed"
+    assert two_sum_hash_map(nums3, target3) == (0, 1), "Hash map test case 3 failed"
     
-    # Test Case 4: No solution
+    # Test case 4: No solution
     nums4 = [1, 2, 3, 4]
     target4 = 10
-    print("Test Case 4:")
-    print(f"Input: nums = {nums4}, target = {target4}")
-    print(f"Brute Force: {solution.two_sum_brute_force(nums4, target4)}")
-    print(f"Hash Map: {solution.two_sum_hash_map(nums4, target4)}")
-    print(f"Sorted: {solution.two_sum_sorted(nums4, target4)}")
-    print()
+    assert two_sum_brute_force(nums4, target4) is None, "Brute force test case 4 failed"
+    assert two_sum_hash_map(nums4, target4) is None, "Hash map test case 4 failed"
     
-    # Test Case 5: Negative numbers
-    nums5 = [-1, -2, -3, -4, -5]
-    target5 = -8
-    print("Test Case 5:")
-    print(f"Input: nums = {nums5}, target = {target5}")
-    print(f"Brute Force: {solution.two_sum_brute_force(nums5, target5)}")
-    print(f"Hash Map: {solution.two_sum_hash_map(nums5, target5)}")
-    print(f"Sorted: {solution.two_sum_sorted(nums5, target5)}")
+    print("All test cases passed!")
 
 if __name__ == "__main__":
-    test_solution() 
+    # Run test cases
+    test_two_sum()
+    
+    # Example usage
+    nums = [2, 7, 11, 15]
+    target = 9
+    
+    # Using brute force approach
+    result_brute = two_sum_brute_force(nums, target)
+    print(f"Brute Force Result: {result_brute}")
+    
+    # Using hash map approach
+    result_hash = two_sum_hash_map(nums, target)
+    print(f"Hash Map Result: {result_hash}")
+    
+    if result_hash:
+        print(f"Numbers at indices {result_hash} sum up to {target}")
+        print(f"Numbers are: {nums[result_hash[0]]} and {nums[result_hash[1]]}") 
