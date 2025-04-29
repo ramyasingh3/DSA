@@ -1,49 +1,60 @@
 def longest_palindrome(s: str) -> str:
     """
-    Find the longest palindromic substring in s.
+    Find the longest palindromic substring in a given string.
     
     Args:
-        s: Input string
+        s (str): Input string
         
     Returns:
-        The longest palindromic substring
+        str: Longest palindromic substring
     """
     if not s:
         return ""
         
+    n = len(s)
+    # dp[i][j] will be True if the substring s[i:j+1] is a palindrome
+    dp = [[False] * n for _ in range(n)]
+    
+    # Every single character is a palindrome
+    for i in range(n):
+        dp[i][i] = True
+        
     start = 0
-    end = 0
+    max_length = 1
     
-    def expand_around_center(left: int, right: int) -> int:
-        while left >= 0 and right < len(s) and s[left] == s[right]:
-            left -= 1
-            right += 1
-        return right - left - 1
-        
-    for i in range(len(s)):
-        # Check for odd length palindromes
-        len1 = expand_around_center(i, i)
-        # Check for even length palindromes
-        len2 = expand_around_center(i, i + 1)
-        
-        # Get the maximum length
-        max_len = max(len1, len2)
-        
-        # Update start and end if we found a longer palindrome
-        if max_len > end - start:
-            start = i - (max_len - 1) // 2
-            end = i + max_len // 2
-            
-    return s[start:end + 1]
+    # Check for substrings of length 2
+    for i in range(n-1):
+        if s[i] == s[i+1]:
+            dp[i][i+1] = True
+            start = i
+            max_length = 2
+    
+    # Check for substrings of length > 2
+    for length in range(3, n+1):
+        for i in range(n-length+1):
+            j = i + length - 1
+            if s[i] == s[j] and dp[i+1][j-1]:
+                dp[i][j] = True
+                if length > max_length:
+                    start = i
+                    max_length = length
+    
+    return s[start:start+max_length]
 
-# Example usage
-if __name__ == "__main__":
-    # Test case 1
-    s1 = "babad"
-    print(f"Input: '{s1}'")
-    print(f"Output: '{longest_palindrome(s1)}'")  # Expected: "bab" or "aba"
+def main():
+    # Test cases
+    test_cases = [
+        "babad",    # Expected: "bab" or "aba"
+        "cbbd",     # Expected: "bb"
+        "a",        # Expected: "a"
+        "",         # Expected: ""
+        "racecar",  # Expected: "racecar"
+    ]
     
-    # Test case 2
-    s2 = "cbbd"
-    print(f"\nInput: '{s2}'")
-    print(f"Output: '{longest_palindrome(s2)}'")  # Expected: "bb" 
+    for s in test_cases:
+        result = longest_palindrome(s)
+        print(f"Input: s = '{s}'")
+        print(f"Output: '{result}'\n")
+
+if __name__ == "__main__":
+    main() 

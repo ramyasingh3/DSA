@@ -1,40 +1,51 @@
 # Longest Palindromic Substring
 
-## Problem Description
-Given a string `s`, return the longest palindromic substring in `s`. A palindrome is a string that reads the same backward as forward.
+## Problem Statement
+Given a string `s`, return the longest palindromic substring in `s`.
+
+A palindrome is a string that reads the same backward as forward, e.g., "madam" or "racecar".
 
 ### Example 1:
 ```
 Input: s = "babad"
-Output: "bab" or "aba"
-Explanation: Both "bab" and "aba" are valid answers.
+Output: "bab"
+Explanation: "aba" is also a valid answer.
 ```
 
 ### Example 2:
 ```
 Input: s = "cbbd"
 Output: "bb"
-Explanation: The longest palindromic substring is "bb".
 ```
 
-## Approach
-The solution uses an expand around center technique:
+### Example 3:
+```
+Input: s = "a"
+Output: "a"
+```
 
-1. For each character in the string, consider it as the center of a potential palindrome
-2. Expand around the center to find the longest palindrome:
-   - For odd-length palindromes, expand with the same center
-   - For even-length palindromes, expand with two adjacent centers
-3. Keep track of the longest palindrome found
-4. Return the substring corresponding to the longest palindrome
+## Constraints:
+- 1 <= s.length <= 1000
+- s consist only of lowercase English letters.
 
-## Time Complexity
-- O(n²), where n is the length of the string
-- For each character in the string, we expand around the center which can take O(n) time
-- In the worst case, we do this for each character
+## Solution Approach
+The solution uses dynamic programming to solve this problem efficiently:
 
-## Space Complexity
-- O(1)
-- We use constant extra space for variables to track the start and end of the longest palindrome
+1. Create a 2D DP table where dp[i][j] represents whether the substring s[i:j+1] is a palindrome.
 
-## Solution Code
-The solution is implemented in `longest_palindromic_substring.py` with detailed comments and example usage. 
+2. Base cases:
+   - Every single character is a palindrome (dp[i][i] = True)
+   - For substrings of length 2, check if both characters are the same
+
+3. For substrings of length > 2:
+   - If s[i] == s[j] and dp[i+1][j-1] is True, then dp[i][j] is True
+   - Keep track of the longest palindrome found so far
+
+4. Return the longest palindromic substring
+
+## Time and Space Complexity
+- Time Complexity: O(n²), where n is the length of the input string
+- Space Complexity: O(n²) for the DP table
+
+## Implementation
+The solution is implemented in Python using dynamic programming. The code includes test cases to verify the implementation. 
