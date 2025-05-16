@@ -1,14 +1,13 @@
 def rob(nums: list[int]) -> int:
     """
-    Find the maximum amount of money you can rob tonight without alerting the police.
-    Adjacent houses have security systems connected and will automatically contact the police
-    if two adjacent houses were broken into on the same night.
+    Find the maximum amount of money that can be robbed from houses.
+    Adjacent houses cannot be robbed on the same night.
     
     Args:
-        nums: List of integers representing the amount of money in each house
+        nums: List of money in each house
         
     Returns:
-        Maximum amount of money that can be robbed
+        Maximum amount that can be robbed
     """
     if not nums:
         return 0
@@ -20,8 +19,8 @@ def rob(nums: list[int]) -> int:
     dp[0] = nums[0]
     dp[1] = max(nums[0], nums[1])
     
+    # For each house, decide whether to rob it or not
     for i in range(2, len(nums)):
-        # Either rob current house and skip previous, or skip current house
         dp[i] = max(dp[i-1], dp[i-2] + nums[i])
     
     return dp[-1]
@@ -41,4 +40,9 @@ if __name__ == "__main__":
     # Test case 3
     nums3 = [2, 1, 1, 2]
     print(f"\nInput: nums = {nums3}")
-    print(f"Output: {rob(nums3)}")  # Expected: 4 (rob house 1 and 4) 
+    print(f"Output: {rob(nums3)}")  # Expected: 4 (rob house 1 and 4)
+    
+    # Test case 4
+    nums4 = []
+    print(f"\nInput: nums = {nums4}")
+    print(f"Output: {rob(nums4)}")  # Expected: 0 (no houses to rob) 
