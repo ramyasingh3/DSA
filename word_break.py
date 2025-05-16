@@ -10,12 +10,18 @@ def word_break(s: str, word_dict: list[str]) -> bool:
         True if the string can be segmented, False otherwise
     """
     n = len(s)
+    # dp[i] represents if s[0:i] can be segmented
     dp = [False] * (n + 1)
     dp[0] = True  # Empty string is always valid
     
+    # Convert word_dict to set for O(1) lookups
+    word_set = set(word_dict)
+    
+    # Check each position in the string
     for i in range(1, n + 1):
+        # Check all possible previous positions
         for j in range(i):
-            if dp[j] and s[j:i] in word_dict:
+            if dp[j] and s[j:i] in word_set:
                 dp[i] = True
                 break
     
@@ -39,4 +45,10 @@ if __name__ == "__main__":
     s3 = "catsandog"
     word_dict3 = ["cats", "dog", "sand", "and", "cat"]
     print(f"\nInput: s = '{s3}', wordDict = {word_dict3}")
-    print(f"Output: {word_break(s3, word_dict3)}")  # Expected: False 
+    print(f"Output: {word_break(s3, word_dict3)}")  # Expected: False
+    
+    # Test case 4
+    s4 = ""
+    word_dict4 = ["a", "b"]
+    print(f"\nInput: s = '{s4}', wordDict = {word_dict4}")
+    print(f"Output: {word_break(s4, word_dict4)}")  # Expected: True 
