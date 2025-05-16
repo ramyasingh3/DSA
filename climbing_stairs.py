@@ -1,7 +1,7 @@
 def climb_stairs(n: int) -> int:
     """
     Find the number of distinct ways to climb to the top of n stairs.
-    Each time you can either climb 1 or 2 steps.
+    You can climb either 1 or 2 steps at a time.
     
     Args:
         n: Number of stairs to climb
@@ -12,14 +12,16 @@ def climb_stairs(n: int) -> int:
     if n <= 2:
         return n
         
-    # Space optimized solution using only two variables
-    prev2, prev1 = 1, 2  # Base cases for n=1 and n=2
+    # dp[i] represents ways to climb i stairs
+    dp = [0] * (n + 1)
+    dp[1] = 1  # One way to climb 1 stair
+    dp[2] = 2  # Two ways to climb 2 stairs (1+1 or 2)
     
+    # Fill dp array
     for i in range(3, n + 1):
-        current = prev1 + prev2
-        prev2, prev1 = prev1, current
+        dp[i] = dp[i-1] + dp[i-2]
     
-    return prev1
+    return dp[n]
 
 # Example usage
 if __name__ == "__main__":
@@ -31,9 +33,14 @@ if __name__ == "__main__":
     # Test case 2
     n2 = 4
     print(f"\nInput: n = {n2}")
-    print(f"Output: {climb_stairs(n2)}")  # Expected: 5 (1+1+1+1, 1+1+2, 1+2+1, 2+1+1, 2+2)
+    print(f"Output: {climb_stairs(n2)}")  # Expected: 5
     
     # Test case 3
-    n3 = 5
+    n3 = 1
     print(f"\nInput: n = {n3}")
-    print(f"Output: {climb_stairs(n3)}")  # Expected: 8 
+    print(f"Output: {climb_stairs(n3)}")  # Expected: 1
+    
+    # Test case 4
+    n4 = 2
+    print(f"\nInput: n = {n4}")
+    print(f"Output: {climb_stairs(n4)}")  # Expected: 2 
