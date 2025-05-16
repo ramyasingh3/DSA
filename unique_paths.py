@@ -1,7 +1,7 @@
 def unique_paths(m: int, n: int) -> int:
     """
-    Find the number of unique paths from the top-left corner to the bottom-right corner of a grid.
-    You can only move either down or right at any point in time.
+    Find the number of unique paths from top-left to bottom-right of a grid.
+    You can only move right or down at any point.
     
     Args:
         m: Number of rows in the grid
@@ -10,13 +10,13 @@ def unique_paths(m: int, n: int) -> int:
     Returns:
         Number of unique paths
     """
-    # Create a 2D dp array initialized with 1s
+    # Create a 2D dp array where dp[i][j] represents paths to reach cell (i,j)
     dp = [[1] * n for _ in range(m)]
     
     # Fill the dp array
     for i in range(1, m):
         for j in range(1, n):
-            # Number of paths to current cell = paths from top + paths from left
+            # Paths to current cell = paths from top + paths from left
             dp[i][j] = dp[i-1][j] + dp[i][j-1]
     
     return dp[m-1][n-1]
@@ -34,6 +34,11 @@ if __name__ == "__main__":
     print(f"Output: {unique_paths(m2, n2)}")  # Expected: 3
     
     # Test case 3
-    m3, n3 = 7, 3
+    m3, n3 = 1, 1
     print(f"\nInput: m = {m3}, n = {n3}")
-    print(f"Output: {unique_paths(m3, n3)}")  # Expected: 28 
+    print(f"Output: {unique_paths(m3, n3)}")  # Expected: 1
+    
+    # Test case 4
+    m4, n4 = 2, 2
+    print(f"\nInput: m = {m4}, n = {n4}")
+    print(f"Output: {unique_paths(m4, n4)}")  # Expected: 2 
