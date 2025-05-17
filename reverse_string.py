@@ -10,3 +10,4 @@ if __name__ == "__main__":
     print(reverse_string("algorithm"))  # Output: "mhtirogla"
     print(reverse_string("data structure"))  # Output: "erutcurts atad"
     print(reverse_string("binary search"))  # Output: "hcraes yranib"
+    print(reverse_string("linked list"))  # Output: "tsil deknil"
