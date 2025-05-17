@@ -12,3 +12,4 @@ if __name__ == "__main__":
     print(reverse_string("binary search"))  # Output: "hcraes yranib"
     print(reverse_string("linked list"))  # Output: "tsil deknil"
     print(reverse_string("tree traversal"))  # Output: "lasrivart eert"
+    print(reverse_string("graph theory"))  # Output: "yrohtp hparg"
