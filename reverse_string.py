@@ -13,3 +13,4 @@ if __name__ == "__main__":
     print(reverse_string("linked list"))  # Output: "tsil deknil"
     print(reverse_string("tree traversal"))  # Output: "lasrivart eert"
     print(reverse_string("graph theory"))  # Output: "yrohtp hparg"
+    print(reverse_string("yesterday"))  # Output: "yadretsey"
