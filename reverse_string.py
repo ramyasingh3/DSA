@@ -18,3 +18,4 @@ if __name__ == "__main__":
     print(reverse_string("developer"))  # Output: "repoleved"
     print(reverse_string("computer"))  # Output: "retupmoc"
     print(reverse_string("software"))  # Output: "erawtfos"
+    print(reverse_string("database"))  # Output: "esabatad"
