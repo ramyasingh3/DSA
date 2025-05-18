@@ -19,3 +19,4 @@ if __name__ == "__main__":
     print(reverse_string("computer"))  # Output: "retupmoc"
     print(reverse_string("software"))  # Output: "erawtfos"
     print(reverse_string("database"))  # Output: "esabatad"
+    print(reverse_string("network"))  # Output: "krowten"
