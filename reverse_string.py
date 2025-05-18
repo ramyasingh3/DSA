@@ -17,3 +17,4 @@ if __name__ == "__main__":
     print(reverse_string("programming"))  # Output: "gnimmargorp"
     print(reverse_string("developer"))  # Output: "repoleved"
     print(reverse_string("computer"))  # Output: "retupmoc"
+    print(reverse_string("software"))  # Output: "erawtfos"
