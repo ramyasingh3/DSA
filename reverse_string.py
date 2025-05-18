@@ -15,3 +15,4 @@ if __name__ == "__main__":
     print(reverse_string("graph theory"))  # Output: "yrohtp hparg"
     print(reverse_string("yesterday"))  # Output: "yadretsey"
     print(reverse_string("programming"))  # Output: "gnimmargorp"
+    print(reverse_string("developer"))  # Output: "repoleved"
