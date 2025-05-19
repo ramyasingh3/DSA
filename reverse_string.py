@@ -24,3 +24,4 @@ if __name__ == "__main__":
     print(reverse_string("internet"))  # Output: "tenretni"
     print(reverse_string("system"))  # Output: "metsys"
     print(reverse_string("application"))  # Output: "noitacilppa"
+    print(reverse_string("interface"))  # Output: "ecafretni"
