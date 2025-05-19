@@ -21,3 +21,4 @@ if __name__ == "__main__":
     print(reverse_string("database"))  # Output: "esabatad"
     print(reverse_string("network"))  # Output: "krowten"
     print(reverse_string("security"))  # Output: "ytiruces"
+    print(reverse_string("internet"))  # Output: "tenretni"
