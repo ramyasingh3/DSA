@@ -29,3 +29,4 @@ if __name__ == "__main__":
     print(reverse_string("dynamic programming"))  # Output: "gnimmargorp cimanyd"
     print(reverse_string("time complexity"))  # Output: "ytixelpmoc emit"
     print(reverse_string("space complexity"))  # Output: "ytixelpmoc ecaps"
+    print(reverse_string("divide and conquer"))  # Output: "reuqnoc dna edivid"
