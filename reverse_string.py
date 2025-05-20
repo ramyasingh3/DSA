@@ -27,3 +27,4 @@ if __name__ == "__main__":
     print(reverse_string("interface"))  # Output: "ecafretni"
     print(reverse_string("framework"))  # Output: "krowemarf"
     print(reverse_string("dynamic programming"))  # Output: "gnimmargorp cimanyd"
+    print(reverse_string("time complexity"))  # Output: "ytixelpmoc emit"
