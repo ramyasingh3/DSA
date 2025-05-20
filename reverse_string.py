@@ -34,3 +34,4 @@ if __name__ == "__main__":
     print(reverse_string("backtracking algorithm"))  # Output: "mhtirogla gnikcartkcab"
     print(reverse_string("depth first search"))  # Output: "hcraes tsrif htped"
     print(reverse_string("breadth first search"))  # Output: "hcraes tsrif htdaerb"
+    print(reverse_string("dijkstra algorithm"))  # Output: "mhtirogla artskjid"
