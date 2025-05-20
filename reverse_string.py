@@ -31,3 +31,4 @@ if __name__ == "__main__":
     print(reverse_string("space complexity"))  # Output: "ytixelpmoc ecaps"
     print(reverse_string("divide and conquer"))  # Output: "reuqnoc dna edivid"
     print(reverse_string("greedy algorithm"))  # Output: "mhtirogla ydreerg"
+    print(reverse_string("backtracking algorithm"))  # Output: "mhtirogla gnikcartkcab"
