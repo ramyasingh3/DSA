@@ -35,3 +35,4 @@ if __name__ == "__main__":
     print(reverse_string("depth first search"))  # Output: "hcraes tsrif htped"
     print(reverse_string("breadth first search"))  # Output: "hcraes tsrif htdaerb"
     print(reverse_string("dijkstra algorithm"))  # Output: "mhtirogla artskjid"
+    print(reverse_string("bellman ford algorithm"))  # Output: "mhtirogla drof namlleb"
