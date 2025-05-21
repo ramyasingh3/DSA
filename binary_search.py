@@ -8,36 +8,29 @@ Time Complexity: O(log n)
 Space Complexity: O(1)
 """
 
-def binary_search(arr, target):
+def binary_search(nums: list[int], target: int) -> int:
     """
-    Performs binary search on a sorted array to find the target value.
+    Perform binary search on a sorted array to find the target value.
     
     Args:
-        arr (list): A sorted list of numbers
-        target: The value to search for
+        nums (list[int]): Sorted array of integers
+        target (int): Value to search for
         
     Returns:
-        int: Index of the target if found, -1 if not found
+        int: Index of the target value if found, -1 if not found
     """
-    left = 0
-    right = len(arr) - 1
+    left, right = 0, len(nums) - 1
     
     while left <= right:
         mid = (left + right) // 2
         
-        # If target is found at mid, return the index
-        if arr[mid] == target:
+        if nums[mid] == target:
             return mid
-            
-        # If target is greater, ignore left half
-        elif arr[mid] < target:
+        elif nums[mid] < target:
             left = mid + 1
-            
-        # If target is smaller, ignore right half
         else:
             right = mid - 1
     
-    # Target not found
     return -1
 
 def test_binary_search():
@@ -72,4 +65,24 @@ if __name__ == "__main__":
     if result != -1:
         print(f"Element {target} is present at index {result}")
     else:
-        print(f"Element {target} is not present in the array") 
+        print(f"Element {target} is not present in the array")
+
+    # Example usage
+    test_cases = [
+        ([1, 2, 3, 4, 5], 3),           # Output: 2
+        ([1, 2, 3, 4, 5], 6),           # Output: -1
+        ([1, 3, 5, 7, 9], 5),           # Output: 2
+        ([1, 3, 5, 7, 9], 4),           # Output: -1
+        ([1], 1),                       # Output: 0
+        ([1], 2),                       # Output: -1
+        ([1, 2, 3, 4, 5, 6], 4),        # Output: 3
+        ([1, 2, 3, 4, 5, 6], 1),        # Output: 0
+        ([1, 2, 3, 4, 5, 6], 6),        # Output: 5
+        ([1, 2, 3, 4, 5, 6], 7),        # Output: -1
+    ]
+    
+    for nums, target in test_cases:
+        result = binary_search(nums, target)
+        print(f"Array: {nums}")
+        print(f"Target: {target}")
+        print(f"Index: {result}\n") 
