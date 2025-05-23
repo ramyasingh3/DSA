@@ -37,3 +37,4 @@ if __name__ == "__main__":
     print(reverse_string("dijkstra algorithm"))  # Output: "mhtirogla artskjid"
     print(reverse_string("bellman ford algorithm"))  # Output: "mhtirogla drof namlleb"
     print(reverse_string("quick sort algorithm"))  # Output: "mhtirogla tros kciuq"
+    print(reverse_string("merge sort algorithm"))  # Output: "mhtirogla tros egrem"
