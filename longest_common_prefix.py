@@ -112,5 +112,52 @@ def test_solution():
     print(f"Horizontal method: {solution.longest_common_prefix_horizontal(strs)}")
     print(f"Divide and conquer method: {solution.longest_common_prefix_divide(strs)}")
 
+def longest_common_prefix(strs: list[str]) -> str:
+    """
+    Find the longest common prefix string amongst an array of strings.
+    If there is no common prefix, return an empty string "".
+    
+    Args:
+        strs: List of strings to find common prefix from
+        
+    Returns:
+        str: The longest common prefix
+        
+    Example:
+        >>> longest_common_prefix(["flower", "flow", "flight"])
+        "fl"
+        >>> longest_common_prefix(["dog", "racecar", "car"])
+        ""
+    """
+    if not strs:
+        return ""
+    
+    # Find the shortest string in the array
+    shortest = min(strs, key=len)
+    
+    # Check each character position
+    for i, char in enumerate(shortest):
+        for string in strs:
+            if string[i] != char:
+                return shortest[:i]
+    
+    return shortest
+
 if __name__ == "__main__":
-    test_solution() 
+    test_solution()
+    
+    # Test cases
+    test_cases = [
+        ["flower", "flow", "flight"],  # Expected: "fl"
+        ["dog", "racecar", "car"],     # Expected: ""
+        ["interspecies", "interstellar", "interstate"],  # Expected: "inters"
+        ["prefix", "preface", "prelude"],  # Expected: "pre"
+        ["", "b"],  # Expected: ""
+        ["a"],  # Expected: "a"
+        ["", ""],  # Expected: ""
+    ]
+    
+    for test in test_cases:
+        result = longest_common_prefix(test)
+        print(f"Input: {test}")
+        print(f"Output: {result}\n") 

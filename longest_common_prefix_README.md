@@ -1,29 +1,35 @@
 # Longest Common Prefix
 
 ## Problem Description
-Write a function to find the longest common prefix string amongst an array of strings. If there is no common prefix, return an empty string `""`.
+Write a function to find the longest common prefix string amongst an array of strings. If there is no common prefix, return an empty string "".
 
 ## Examples
-1. Common prefix exists:
-   ```
-   Input: strs = ["flower", "flow", "flight"]
-   Output: "fl"
-   Explanation: All strings start with "fl".
-   ```
+```
+Input: strs = ["flower", "flow", "flight"]
+Output: "fl"
 
-2. No common prefix:
-   ```
-   Input: strs = ["dog", "racecar", "car"]
-   Output: ""
-   Explanation: There is no common prefix among the input strings.
-   ```
+Input: strs = ["dog", "racecar", "car"]
+Output: ""
+Explanation: There is no common prefix among the input strings.
+```
 
-3. Single string:
-   ```
-   Input: strs = ["a"]
-   Output: "a"
-   Explanation: The only string is its own prefix.
-   ```
+## Approach
+1. If the input array is empty, return an empty string
+2. Find the shortest string in the array (since the common prefix cannot be longer than the shortest string)
+3. For each character position in the shortest string:
+   - Compare the character with the same position in all other strings
+   - If any character doesn't match, return the prefix up to that position
+4. If all characters match, return the entire shortest string
+
+## Time Complexity
+- O(S), where S is the sum of all characters in all strings
+- In the worst case, we need to compare all characters in all strings
+
+## Space Complexity
+- O(1), as we only use a constant amount of extra space
+
+## Solution
+The solution is implemented in `longest_common_prefix.py` with detailed comments and test cases.
 
 ## Solution Approaches
 
