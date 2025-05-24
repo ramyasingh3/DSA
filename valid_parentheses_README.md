@@ -1,62 +1,56 @@
 # Valid Parentheses
 
 ## Problem Description
-Given a string `s` containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. An input string is valid if:
+Given a string `s` containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
 1. Open brackets must be closed by the same type of brackets.
 2. Open brackets must be closed in the correct order.
 3. Every close bracket has a corresponding open bracket of the same type.
 
-### Example 1:
+## Examples
 ```
 Input: s = "()"
 Output: true
-```
 
-### Example 2:
-```
 Input: s = "()[]{}"
 Output: true
-```
 
-### Example 3:
-```
 Input: s = "(]"
 Output: false
-```
 
-### Example 4:
-```
 Input: s = "([)]"
 Output: false
-```
 
-### Example 5:
-```
 Input: s = "{[]}"
 Output: true
 ```
 
 ## Approach
-The solution uses a stack data structure:
-
-1. Create a map of closing to opening parentheses
-2. Initialize an empty stack
+The solution uses a stack-based approach:
+1. Initialize an empty stack
+2. Create a mapping of closing brackets to their corresponding opening brackets
 3. Iterate through each character in the string:
-   - If the character is a closing parenthesis:
-     - Check if the stack is empty or if the top element doesn't match
-     - If either condition is true, return false
+   - If it's an opening bracket, push it onto the stack
+   - If it's a closing bracket:
+     - If the stack is empty or the top of the stack doesn't match the corresponding opening bracket, return false
      - Otherwise, pop the top element from the stack
-   - If the character is an opening parenthesis, push it onto the stack
-4. After processing all characters, return true if the stack is empty, false otherwise
+4. After processing all characters, the stack should be empty for a valid string
 
 ## Time Complexity
-- O(n), where n is the length of the string
-- We process each character in the string exactly once
+- O(n), where n is the length of the input string
+- We process each character exactly once
 
 ## Space Complexity
-- O(n)
-- In the worst case, we push all opening parentheses onto the stack
-- The stack can grow up to the size of the input string
+- O(n), where n is the length of the input string
+- In the worst case, we might need to store all opening brackets in the stack
 
-## Solution Code
-The solution is implemented in `valid_parentheses.py` with detailed comments and example usage. 
+## Solution
+The solution is implemented in `valid_parentheses.py` with detailed comments and test cases.
+
+## Common Applications
+- Syntax checking in programming languages
+- XML/HTML tag validation
+- Mathematical expression validation
+- Code editor bracket matching
+- Configuration file validation 

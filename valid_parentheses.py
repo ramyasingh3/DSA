@@ -14,15 +14,25 @@ Time Complexity: O(n)
 Space Complexity: O(n)
 """
 
-def is_valid_parentheses(s):
+def is_valid(s: str) -> bool:
     """
-    Check if the given string has valid parentheses using a stack.
+    Determine if the input string has valid parentheses.
+    Valid parentheses means every opening bracket has a corresponding closing bracket
+    of the same type and in the correct order.
     
     Args:
-        s (str): String containing parentheses
+        s: Input string containing only '(', ')', '{', '}', '[' and ']'
         
     Returns:
-        bool: True if parentheses are valid, False otherwise
+        bool: True if the string has valid parentheses, False otherwise
+        
+    Example:
+        >>> is_valid("()")
+        True
+        >>> is_valid("()[]{}")
+        True
+        >>> is_valid("(]")
+        False
     """
     # Dictionary to map closing brackets to their corresponding opening brackets
     bracket_map = {
@@ -48,51 +58,33 @@ def is_valid_parentheses(s):
     # Stack should be empty if all brackets are properly matched
     return len(stack) == 0
 
-def test_valid_parentheses():
-    """Test cases for valid parentheses implementation"""
-    # Test case 1: Simple valid case
-    assert is_valid_parentheses("()") == True, "Test case 1 failed"
-    
-    # Test case 2: Multiple valid pairs
-    assert is_valid_parentheses("()[]{}") == True, "Test case 2 failed"
-    
-    # Test case 3: Nested valid pairs
-    assert is_valid_parentheses("([{}])") == True, "Test case 3 failed"
-    
-    # Test case 4: Invalid case - mismatched brackets
-    assert is_valid_parentheses("(]") == False, "Test case 4 failed"
-    
-    # Test case 5: Invalid case - unclosed bracket
-    assert is_valid_parentheses("(") == False, "Test case 5 failed"
-    
-    # Test case 6: Invalid case - extra closing bracket
-    assert is_valid_parentheses(")") == False, "Test case 6 failed"
-    
-    # Test case 7: Complex valid case
-    assert is_valid_parentheses("{[()()]}") == True, "Test case 7 failed"
-    
-    # Test case 8: Complex invalid case
-    assert is_valid_parentheses("{[()(]}") == False, "Test case 8 failed"
-    
-    print("All test cases passed!")
-
-if __name__ == "__main__":
-    # Run test cases
-    test_valid_parentheses()
-    
-    # Example usage
-    test_strings = [
-        "()",
-        "()[]{}",
-        "([{}])",
-        "(]",
-        "(",
-        ")",
-        "{[()()]}",
-        "{[()(]}"
+def test_solution():
+    # Test cases
+    test_cases = [
+        ("()", True),           # Simple valid case
+        ("()[]{}", True),       # Multiple valid pairs
+        ("(]", False),          # Invalid pair
+        ("([)]", False),        # Invalid order
+        ("{[]}", True),         # Nested valid pairs
+        ("", True),             # Empty string
+        ("(", False),           # Unclosed bracket
+        (")", False),           # Unopened bracket
+        ("(((", False),         # Multiple unclosed brackets
+        (")))", False),         # Multiple unopened brackets
+        ("({[]})", True),       # Complex nested valid case
+        ("(hello[world]{!})", True),  # Valid with other characters
     ]
     
-    print("\nTesting various strings:")
-    for s in test_strings:
-        result = is_valid_parentheses(s)
-        print(f"String: {s:<10} Valid: {result}") 
+    print("Running test cases for Valid Parentheses problem:")
+    print("-" * 50)
+    
+    for input_str, expected in test_cases:
+        result = is_valid(input_str)
+        print(f"Input: {input_str}")
+        print(f"Expected: {expected}")
+        print(f"Got: {result}")
+        print(f"Test {'PASSED' if result == expected else 'FAILED'}")
+        print("-" * 50)
+
+if __name__ == "__main__":
+    test_solution() 
