@@ -11,8 +11,12 @@ Input: s = "bbbbb"
 Output: 1
 Explanation: The longest substring without repeating characters is "b", with length 1.
 
-Time Complexity: O(n)
-Space Complexity: O(min(m, n)) where m is the size of the character set
+Time Complexity:
+- Sliding Window Solution: O(n)
+- Hash Map Solution: O(n)
+Space Complexity:
+- Sliding Window Solution: O(min(m, n)) where m is the size of the character set
+- Hash Map Solution: O(min(m, n)) where m is the size of the character set
 """
 
 from typing import Dict
@@ -110,6 +114,8 @@ def test_longest_substring():
         
         # Test substring reconstruction
         result_substring = get_longest_substring(s)
+        assert len(result_substring) == expected_length, \
+            f"Substring reconstruction failed for '{s}'. Expected length {expected_length}, got {len(result_substring)}"
         assert result_substring == expected_substring, \
             f"Substring reconstruction failed for '{s}'. Expected '{expected_substring}', got '{result_substring}'"
         
