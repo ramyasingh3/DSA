@@ -1,69 +1,68 @@
+"""
+Find the minimum window substring in s that contains all the characters of t.
+If there is no such window, return the empty string "".
+
+Example 1:
+Input: s = "ADOBECODEBANC", t = "ABC"
+Output: "BANC"
+
+Example 2:
+Input: s = "a", t = "a"
+Output: "a"
+
+Time Complexity: O(n)
+Space Complexity: O(m + n), where n = len(s), m = len(t)
+"""
+
+from collections import Counter, defaultdict
+
 def min_window(s: str, t: str) -> str:
     """
-    Find the minimum window in s which will contain all the characters in t.
-    
-    Args:
-        s: The string to search in
-        t: The string containing characters to find
-        
-    Returns:
-        The minimum window substring
+    Sliding window solution to find the minimum window substring.
     """
-    if not s or not t or len(s) < len(t):
+    if not t or not s:
         return ""
-        
-    # Create frequency maps
-    t_freq = {}
-    for char in t:
-        t_freq[char] = t_freq.get(char, 0) + 1
-        
-    required = len(t_freq)
+    
+    dict_t = Counter(t)
+    required = len(dict_t)
+    l, r = 0, 0
     formed = 0
-    window_freq = {}
+    window_counts = defaultdict(int)
+    ans = float('inf'), None, None  # window length, left, right
     
-    # Sliding window variables
-    left = 0
-    right = 0
-    min_len = float('inf')
-    result = ""
-    
-    while right < len(s):
-        # Add current character to window
-        char = s[right]
-        window_freq[char] = window_freq.get(char, 0) + 1
-        
-        # Check if current character completes a required character
-        if char in t_freq and window_freq[char] == t_freq[char]:
+    while r < len(s):
+        character = s[r]
+        window_counts[character] += 1
+        if character in dict_t and window_counts[character] == dict_t[character]:
             formed += 1
-            
-        # Try to contract the window from the left
-        while left <= right and formed == required:
-            # Update result if current window is smaller
-            if right - left + 1 < min_len:
-                min_len = right - left + 1
-                result = s[left:right+1]
-                
-            # Remove leftmost character from window
-            char = s[left]
-            window_freq[char] -= 1
-            if char in t_freq and window_freq[char] < t_freq[char]:
+        while l <= r and formed == required:
+            if r - l + 1 < ans[0]:
+                ans = (r - l + 1, l, r)
+            window_counts[s[l]] -= 1
+            if s[l] in dict_t and window_counts[s[l]] < dict_t[s[l]]:
                 formed -= 1
-            left += 1
-            
-        right += 1
-        
-    return result
+            l += 1
+        r += 1
+    return "" if ans[0] == float('inf') else s[ans[1]:ans[2]+1]
 
-# Example usage
+# Test cases
+def test_min_window():
+    test_cases = [
+        ("ADOBECODEBANC", "ABC", "BANC"),
+        ("a", "a", "a"),
+        ("a", "aa", ""),
+        ("ab", "A", ""),
+        ("bba", "ab", "ba"),
+        ("cabwefgewcwaefgcf", "cae", "cwae"),
+        ("", "a", ""),
+        ("a", "", ""),
+        ("abc", "d", ""),
+        ("aa", "aa", "aa"),
+    ]
+    for s, t, expected in test_cases:
+        result = min_window(s, t)
+        assert result == expected, f"Failed for s='{s}', t='{t}'. Expected '{expected}', got '{result}'"
+        print(f"Test passed for s='{s}', t='{t}'")
+
 if __name__ == "__main__":
-    # Test case 1
-    s1 = "ADOBECODEBANC"
-    t1 = "ABC"
-    print(f"Input: s = '{s1}', t = '{t1}'")
-    print(f"Output: '{min_window(s1, t1)}'")  # Expected: "BANC"
-    
-    # Test case 2
-    s2 = "a"
-    t2 = "a"
-    print(f"\nInput: s = '{s2}', t = '{t2}'")
-    print(f"Output: '{min_window(s2, t2)}'")  # Expected: "a" 
+    test_min_window() 
