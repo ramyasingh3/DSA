@@ -12,11 +12,11 @@ Output: 4
 Explanation: The longest valid parentheses substring is "()()".
 
 Time Complexity:
-- Stack solution: O(n)
-- Dynamic Programming: O(n)
+- Stack Solution: O(n)
+- Dynamic Programming Solution: O(n)
 Space Complexity:
-- Stack solution: O(n)
-- Dynamic Programming: O(n)
+- Stack Solution: O(n)
+- Dynamic Programming Solution: O(n)
 """
 
 from typing import List
@@ -46,7 +46,7 @@ def longest_valid_parentheses_stack(s: str) -> int:
 
 def longest_valid_parentheses_dp(s: str) -> int:
     """
-    Dynamic programming solution.
+    Solution using dynamic programming.
     dp[i] represents the length of the longest valid parentheses ending at index i.
     """
     if not s:
@@ -59,19 +59,17 @@ def longest_valid_parentheses_dp(s: str) -> int:
     for i in range(1, n):
         if s[i] == ')':
             if s[i - 1] == '(':
-                # Case: "()"
                 dp[i] = (dp[i - 2] if i >= 2 else 0) + 2
             elif i - dp[i - 1] > 0 and s[i - dp[i - 1] - 1] == '(':
-                # Case: "(())"
                 dp[i] = dp[i - 1] + (dp[i - dp[i - 1] - 2] if i - dp[i - 1] >= 2 else 0) + 2
             max_length = max(max_length, dp[i])
     
     return max_length
 
-def get_valid_parentheses_substring(s: str) -> str:
+def get_longest_valid_parentheses(s: str) -> str:
     """
     Helper function to get the actual longest valid parentheses substring.
-    Uses the stack solution to find the indices.
+    Uses the stack approach to find the substring.
     """
     if not s:
         return ""
@@ -104,9 +102,9 @@ def test_longest_valid_parentheses():
         ("(", 0, ""),
         (")", 0, ""),
         ("()", 2, "()"),
+        ("()()", 4, "()()"),
         ("(())", 4, "(())"),
-        ("()(()", 2, "()"),
-        ("()(())", 6, "()(())"),
+        ("(()())", 6, "(()())"),
         ("((()))", 6, "((()))"),
     ]
     
@@ -122,7 +120,9 @@ def test_longest_valid_parentheses():
             f"DP solution failed for '{s}'. Expected length {expected_length}, got {result_dp}"
         
         # Test substring reconstruction
-        result_substring = get_valid_parentheses_substring(s)
+        result_substring = get_longest_valid_parentheses(s)
+        assert len(result_substring) == expected_length, \
+            f"Substring reconstruction failed for '{s}'. Expected length {expected_length}, got {len(result_substring)}"
         assert result_substring == expected_substring, \
             f"Substring reconstruction failed for '{s}'. Expected '{expected_substring}', got '{result_substring}'"
         
